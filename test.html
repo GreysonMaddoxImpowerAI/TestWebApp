@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Azure Function Trigger</title>
+</head>
+<body>
+  <h2>Select Files to Process</h2>
+
+  <!-- Placeholder for file checkboxes -->
+  <div id="file-list">
+    <!-- Dynamically populated list of files -->
+  </div>
+
+  <!-- Button to trigger Azure Function -->
+  <button onclick="runFunction()">Run Function</button>
+
+  <script>
+    // Step 1: Load available files (from Azure Blob Storage or a static list)
+    function loadFiles() {
+      // Example: populate file list manually or from a future API
+      const files = ["file1.csv", "file2.csv", "file3.csv"];
+      const container = document.getElementById("file-list");
+
+      files.forEach(file => {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = file;
+
+        container.appendChild(checkbox);
+        container.appendChild(document.createTextNode(file));
+        container.appendChild(document.createElement("br"));
+      });
+    }
+
+    // Step 2: Collect selected files and prepare to send to Azure Function
+    function runFunction() {
+      const selectedFiles = Array.from(document.querySelectorAll("#file-list input:checked"))
+                                 .map(cb => cb.value);
+
+      // Placeholder: send selectedFiles to Azure Function
+      console.log("Files to process:", selectedFiles);
+    }
+
+    // Initialize file list on page load
+    loadFiles();
+  </script>
+</body>
+</html>
